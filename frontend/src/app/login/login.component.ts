@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,15 @@ export class LoginComponent implements OnInit {
   password = '';
   errorMessage = 'Invalid credentials';
   invalidLogin = false;
-  constructor() { }
+  // In TypeScript, if pass something as a dependency in the constructor, it is readly available for use
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   handleLogin() {
-    if (this.username === 'in28minutes' && this.password === 'dummy') {
+    if (this.username === 'davi' && this.password === 'dummy') {
+      this.router.navigate(['welcome']);
       this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
