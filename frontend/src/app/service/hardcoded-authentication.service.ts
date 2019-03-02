@@ -8,10 +8,8 @@ export class HardcodedAuthenticationService {
   constructor() { }
 
   authenticate(username: string, password: string) {
-    console.log('before ' + this.isUserLoggedIn());
     if (username == 'davi' && password == 'dummy') {
       sessionStorage.setItem('authenticatedUser', username);
-      console.log('after ' + this.isUserLoggedIn());
       return true;
     }
     return false;
