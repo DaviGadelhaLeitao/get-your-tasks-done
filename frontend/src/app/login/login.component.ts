@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,18 @@ export class LoginComponent implements OnInit {
   errorMessage = 'Invalid credentials';
   invalidLogin = false;
   // In TypeScript, if pass something as a dependency in the constructor, it is readly available for use
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private hardcodedAuthentication: HardcodedAuthenticationService
+  ) { }
 
   ngOnInit() {
   }
 
   handleLogin() {
-    if (this.username === 'davi' && this.password === 'dummy') {
+
+
+    if (this.hardcodedAuthentication.authenticate(this.username, this.password)) {
       this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
     } else {
