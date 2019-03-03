@@ -2,14 +2,11 @@ package com.davileitao.webservices.getyourtasksdone.models;
 
 public class Task {
 
-	@Override
-	public String toString() {
-		return "Task [description=" + description + "]";
-	}
-
+	private Long id;
 	private String description;
 
-	public Task(String description) {
+	public Task(Long id, String description) {
+		this.setId(id);
 		this.setDescription(description);
 	}
 
@@ -19,6 +16,19 @@ public class Task {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return "Task [description=" + description + "]";
 	}
 
 }
