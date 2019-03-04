@@ -20,9 +20,11 @@ public class TasksController {
 		Task task1 = new Task(1L, "do a 5k run");
 		Task task2 = new Task(2L, "beat your 5k time");
 		Task task3 = new Task(3L, "rest well between training sessions");
+		Task task4 = new Task(4L, "make a meal");
 		tasks.add(task1);
 		tasks.add(task2);
 		tasks.add(task3);
+		tasks.add(task4);
 
 		return tasks;
 	}
