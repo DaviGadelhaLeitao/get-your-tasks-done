@@ -11,6 +11,7 @@ import { TaskComponent } from '../models/task/task.component';
 export class ListTodosComponent implements OnInit {
 
   tasks: Array<TaskComponent>;
+  messages;
 
   constructor(private taskService: TaskService) { }
 
@@ -20,13 +21,17 @@ export class ListTodosComponent implements OnInit {
 
   getTasks() {
     this.taskService.getTasks().subscribe(
-      response => this.handleSuccessfulResponse(response)
+      response => this.handleSuccessfulResponse(response),
+      error => this.handleErrorResponse(error)
     );
   }
 
   handleSuccessfulResponse(response) {
     this.tasks = response;
-    console.log(response);
+  }
+
+  handleErrorResponse(error) {
+    this.messages = error.error.message;
   }
 
 }
