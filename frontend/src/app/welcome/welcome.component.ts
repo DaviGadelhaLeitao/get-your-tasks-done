@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TaskService } from '../service/data/task-service';
 
 @Component({
   selector: 'app-welcome',
@@ -9,20 +8,13 @@ import { TaskService } from '../service/data/task-service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute,
-    private taskService: TaskService
-  ) { }
+  constructor(private route: ActivatedRoute) { }
 
   username = "";
 
   ngOnInit() {
 
     this.username = this.route.snapshot.params['name'];
-  }
-
-  getTasks() {
-    console.log(this.taskService.getTasks());
   }
 
 }

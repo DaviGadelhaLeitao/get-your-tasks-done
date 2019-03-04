@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../service/data/task-service';
+import { TaskComponent } from '../models/task/task.component';
 
-export class Todo {
-  constructor(
-    public id: number,
-    public description: string,
-    public done: boolean,
-    public targetDate: Date
-  ) {
-
-  }
-}
 
 @Component({
   selector: 'app-list-todos',
@@ -18,15 +10,23 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
-  todos = [
-    new Todo(1, 'Learn to dance', false, new Date()),
-    new Todo(1, 'Become an expert in Angular', false, new Date()),
-    new Todo(1, 'It would be a nice thing to visit India', false, new Date())
-  ]
+  tasks: Array<TaskComponent>;
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+  getTasks() {
+    this.taskService.getTasks().subscribe(
+      response => this.handleSuccessfulResponse(response)
+    );
+  }
+
+  handleSuccessfulResponse(response) {
+    this.tasks = response;
+    console.log(response);
   }
 
 }
