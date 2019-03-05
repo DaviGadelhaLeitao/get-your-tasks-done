@@ -24,5 +24,54 @@ public class TaskHardcodedService {
 	public List<Task> findAll() {
 		return tasks;
 	}
+	
+	public Task deleteById(Integer id) {
+		Task task = findById(id);
+		
+		if (task == null) return null;
+		
+		if (tasks.remove(task)) {
+			return task;
+		}
+		
+		return null;
+	}
+
+	public Task findById(Integer id) {
+		for(Task task : tasks) {
+			if (task.getId() == id) {
+				return task;
+			}
+		}
+		
+		return null;
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
