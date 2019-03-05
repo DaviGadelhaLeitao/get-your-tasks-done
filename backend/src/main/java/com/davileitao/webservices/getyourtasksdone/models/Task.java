@@ -1,18 +1,24 @@
 package com.davileitao.webservices.getyourtasksdone.models;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Task {
 
-	private Long id;
-	private String description;
-	private LocalDateTime targetDate;
-	private Boolean done;
-
-	public Task(Long id, String description) {
-		this.setId(id);
-		this.setDescription(description);
+	private Integer id;
+	
+	public Task(Integer id, String username, String description, Date targetDate, Boolean done) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.description = description;
+		this.targetDate = targetDate;
+		this.done = done;
 	}
+
+	private String username;
+	private String description;
+	private Date targetDate;
+	private Boolean done;
 
 	public String getDescription() {
 		return description;
@@ -22,11 +28,11 @@ public class Task {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -35,11 +41,11 @@ public class Task {
 		return "Task [description=" + description + "]";
 	}
 
-	public LocalDateTime getTargetDate() {
+	public Date getTargetDate() {
 		return targetDate;
 	}
 
-	public void setTargetDate(LocalDateTime targetDate) {
+	public void setTargetDate(Date targetDate) {
 		this.targetDate = targetDate;
 	}
 
@@ -49,6 +55,14 @@ public class Task {
 
 	public void setDone(Boolean done) {
 		this.done = done;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

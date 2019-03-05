@@ -16,22 +16,26 @@ export class ListTodosComponent implements OnInit {
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-    this.getTasks();
-  }
-
-  getTasks() {
-    this.taskService.getTasks().subscribe(
-      response => this.handleSuccessfulResponse(response),
-      error => this.handleErrorResponse(error)
+    this.taskService.retrieveAllTasks('davi').subscribe(
+      response => {
+        this.tasks = response;
+      }
     );
   }
 
-  handleSuccessfulResponse(response) {
-    this.tasks = response;
-  }
+  // retrieveAllTasks(username) {
+  //   this.taskService.retrieveAllTasks(username).subscribe(
+  //     response => this.handleSuccessfulResponse(response),
+  //     error => this.handleErrorResponse(error)
+  //   );
+  // }
 
-  handleErrorResponse(error) {
-    this.messages = error.error.message;
-  }
+  // handleSuccessfulResponse(response) {
+  //   this.tasks = response;
+  // }
+
+  // handleErrorResponse(error) {
+  //   this.messages = error.error.message;
+  // }
 
 }

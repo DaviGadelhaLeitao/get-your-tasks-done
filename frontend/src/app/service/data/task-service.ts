@@ -11,7 +11,7 @@ export class TaskService {
     private http: HttpClient
   ) { }
 
-  getTasks() {
-    return this.http.get<TaskComponent>('http://localhost:8080/tasks');
+  retrieveAllTasks(username) {
+    return this.http.get<TaskComponent[]>(`http://localhost:8080/users/{username}/tasks`);
   }
 }
