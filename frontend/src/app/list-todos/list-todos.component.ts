@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../service/data/task-service';
 import { TaskComponent } from '../models/task/task.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,13 @@ import { TaskComponent } from '../models/task/task.component';
 export class ListTodosComponent implements OnInit {
 
   tasks: Array<TaskComponent>;
-  messages;
-  messageType;
+  messages: string;
+  messageType: string;
 
-  constructor(private taskService: TaskService) { }
+  constructor(
+    private taskService: TaskService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.refreshTasks();
@@ -29,7 +33,8 @@ export class ListTodosComponent implements OnInit {
   }
 
   editAction(id: number) {
-    console.log(`Inside editAction for task number ${id}.`);
+    console.log(id);
+    this.router.navigate(['tasks', id]);
   }
 
   deleteAction(id: number) {
