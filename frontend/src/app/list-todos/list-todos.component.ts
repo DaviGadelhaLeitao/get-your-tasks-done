@@ -12,30 +12,39 @@ export class ListTodosComponent implements OnInit {
 
   tasks: Array<TaskComponent>;
   messages;
+  messageType;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-    this.taskService.retrieveAllTasks('davi').subscribe(
+    this.refreshTasks();
+  }
+
+  refreshTasks() {
+    this.taskService.retrieveAllTasks().subscribe(
       response => {
         this.tasks = response;
       }
     );
   }
 
-  // retrieveAllTasks(username) {
-  //   this.taskService.retrieveAllTasks(username).subscribe(
-  //     response => this.handleSuccessfulResponse(response),
-  //     error => this.handleErrorResponse(error)
-  //   );
-  // }
+  editAction(id: number) {
+    console.log(`Inside editAction for task number ${id}.`);
+  }
 
-  // handleSuccessfulResponse(response) {
-  //   this.tasks = response;
-  // }
+  deleteAction(id: number) {
+    this.taskService.deleteAction(id).subscribe(
+      response => {
+        this.messageType = 'success';
+        this.messages = `Successfully deleted task number ${id}.`;
+        this.refreshTasks();
+      },
+      error => {
+        this.messageType = 'danger';
+        this.messages = 'There was an error while deleting the task...';
+      }
 
-  // handleErrorResponse(error) {
-  //   this.messages = error.error.message;
-  // }
+    );
+  }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TaskComponent } from 'src/app/models/task/task.component';
+import { HardcodedAuthenticationService } from '../hardcoded-authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,17 @@ import { TaskComponent } from 'src/app/models/task/task.component';
 export class TaskService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: HardcodedAuthenticationService
   ) { }
 
-  retrieveAllTasks(username) {
-    return this.http.get<TaskComponent[]>(`http://localhost:8080/users/{username}/tasks`);
+  retrieveAllTasks() {
+    const username = this.authService.getLoggedUser();
+    return this.http.get<TaskComponent[]>(`http://localhost:8080/users/${username}/tasks`);
+  }
+
+  deleteAction(id: number) {
+    const username = this.authService.getLoggedUser();
+    return this.http.delete(`http://localhost:8080/users/${username}/tasks/${id}`)
   }
 }
