@@ -3,7 +3,9 @@ package com.davileitao.webservices.getyourtasksdone;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,18 @@ public class TaskResource {
 	public List<Task> getAllTasks(@PathVariable String username) {
 		return taskService.findAll();
 	}
+	
+	@DeleteMapping("/users/{username}/tasks/{id}")
+	public ResponseEntity<Void> deleteTask(@PathVariable String username, @PathVariable Integer id) {
+		Task task = taskService.deleteById(id);
+		
+		if (task != null) {
+			return ResponseEntity.noContent().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
+	
 
 
 }
