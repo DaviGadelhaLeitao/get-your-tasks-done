@@ -8,6 +8,8 @@
           <th>Description</th>
           <th>Target Date</th>
           <th>is Completed?</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +17,8 @@
           <td>{{task.description}}</td>
           <td>{{task.targetDate | date | uppercase}}</td>
           <td>{{task.done}}</td>
+          <td (click)="editAction()"><i class="fas fa-edit"></i></td>
+          <td (click)="deleteAction()"><i class="fas fa-trash"></i></td>
         </tr>
       </tbody>
 
