@@ -12,7 +12,7 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
-import { TaskComponent } from './models/task/task.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [

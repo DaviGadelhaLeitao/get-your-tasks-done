@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TaskComponent } from 'src/app/models/task/task.component';
 import { HardcodedAuthenticationService } from '../hardcoded-authentication.service';
+import { Task } from 'src/app/models/Task';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,11 @@ export class TaskService {
 
   retrieveAllTasks() {
     const username = this.authService.getLoggedUser();
-    return this.http.get<TaskComponent[]>(`http://localhost:8080/users/${username}/tasks`);
+    return this.http.get<Task[]>(`http://localhost:8080/users/${username}/tasks`);
+  }
+
+  retrieveTask(username: string, id: number) {
+    return this.http.get<Task>(`http://localhost:8080/users/${username}/tasks/${id}`);
   }
 
   editAction(id: number) {

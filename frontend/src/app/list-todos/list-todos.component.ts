@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../service/data/task-service';
-import { TaskComponent } from '../models/task/task.component';
 import { Router } from '@angular/router';
+import { Task } from '../models/Task';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ListTodosComponent implements OnInit {
 
-  tasks: Array<TaskComponent>;
+  tasks: Array<Task>;
   messages: string;
   messageType: string;
 
