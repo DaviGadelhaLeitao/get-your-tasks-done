@@ -6,6 +6,14 @@ public class Task {
 
 	private Integer id;
 	
+	// a default constructor since we overridden the default one
+	// if you would want to have a RequestBody then you need to actually have a default constructor with no arguments
+	// that will enable creation of this object with the values presented into the request the setters are called for
+	// them
+	protected Task() {
+		
+	}
+	
 	public Task(Integer id, String username, String description, Date targetDate, Boolean done) {
 		super();
 		this.id = id;

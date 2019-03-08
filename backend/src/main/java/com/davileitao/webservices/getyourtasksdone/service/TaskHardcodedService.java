@@ -25,6 +25,20 @@ public class TaskHardcodedService {
 		return tasks;
 	}
 	
+	public Task save(Task task) {
+		// if it doesn't exist
+		if (task.getId() == -1) {
+			task.setId(++idCounter);
+			tasks.add(task);
+		} else {
+			// updating a task
+			deleteById(task.getId());
+			tasks.add(task);
+		}
+		return task;
+		
+	}
+	
 	public Task deleteById(Integer id) {
 		Task task = findById(id);
 		
