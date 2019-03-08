@@ -27,7 +27,7 @@ public class TaskHardcodedService {
 	
 	public Task save(Task task) {
 		// if it doesn't exist
-		if (task.getId() == -1) {
+		if (task.getId() == null || task.getId() == -1 || task.getId() == 0) {
 			task.setId(++idCounter);
 			tasks.add(task);
 		} else {
