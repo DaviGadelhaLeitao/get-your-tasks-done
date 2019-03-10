@@ -1,4 +1,4 @@
-package com.davileitao.webservices.getyourtasksdone;
+package com.davileitao.webservices.getyourtasksdone.resource;
 
 import java.net.URI;
 import java.util.List;
