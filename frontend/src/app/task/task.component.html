@@ -11,7 +11,15 @@
           id="description"
           placeholder="Enter a description"
           required="required"
+          minlength="5"
+          #description="ngModel"
         />
+        <div
+          class="alert alert-warning"
+          *ngIf="taskForm.dirty && description.invalid"
+        >
+          Description should have at least 5 characters.
+        </div>
       </div>
       <div class="form-group">
         <label for="targetDate">Target Date</label>
@@ -22,7 +30,14 @@
           name="targetDate"
           class="form-control"
           required="required"
+          #targetDate="ngModel"
         />
+        <div
+          class="alert alert-warning"
+          *ngIf="taskForm.dirty && targetDate.invalid"
+        >
+          Target Date is invalid.
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary">
