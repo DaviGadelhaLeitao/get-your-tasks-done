@@ -1,18 +1,31 @@
 <div class="row">
   <div class="col-md-6">
-
     <div class="form-group">
       <label for="description">Description</label>
-      <input type="text" name="description" [(ngModel)]="task.description" class="form-control" id="description"
-        placeholder="Enter a description" required="required">
+      <input
+        type="text"
+        name="description"
+        [(ngModel)]="task.description"
+        class="form-control"
+        id="description"
+        placeholder="Enter a description"
+        required="required"
+      />
     </div>
     <div class="form-group">
       <label for="targetDate">Target Date</label>
-      <input type="date" [ngModel]="task.targetDate | date:'yyyy-MM-dd' " (ngModelChange)="task.targetDate = $event"
-        name="targetDate" class="form-control" required="required">
+      <input
+        type="date"
+        [ngModel]="task.targetDate | date: 'yyyy-MM-dd'"
+        (ngModelChange)="task.targetDate = $event"
+        name="targetDate"
+        class="form-control"
+        required="required"
+      />
     </div>
 
-    <button (click)=" saveTask()" type="submit" class="btn btn-primary">Submit</button>
-
+    <button (click)="saveTask()" type="submit" class="btn btn-primary">
+      Submit
+    </button>
   </div>
 </div>
