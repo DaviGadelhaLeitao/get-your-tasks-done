@@ -31,7 +31,7 @@ export class TaskComponent implements OnInit {
 
   saveTask() {
     const username = sessionStorage.getItem("authenticatedUser");
-    if (this.id === -1) {
+    if (this.id == -1) {
       this.taskService.createTask(username, this.task).subscribe(data => {
         this.router.navigate(["tasks"]);
       });
