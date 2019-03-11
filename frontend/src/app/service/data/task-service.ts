@@ -25,6 +25,13 @@ export class TaskService {
     );
   }
 
+  createTask(username: string, task: Task) {
+    return this.http.post(
+      `http://localhost:8080/users/${username}/tasks/`,
+      task
+    );
+  }
+
   updateTask(username: string, id: number, task: Task) {
     return this.http.put(
       `http://localhost:8080/users/${username}/tasks/${id}`,

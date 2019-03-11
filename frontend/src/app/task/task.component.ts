@@ -19,20 +19,28 @@ export class TaskComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
     const username = sessionStorage.getItem("authenticatedUser");
-    this.task = new Task(1, "", false, new Date());
-    this.taskService.retrieveTask(username, this.id).subscribe(data => {
-      this.task = data;
-    });
+    this.id = this.route.snapshot.params["id"];
+    this.task = new Task(this.id, "", false, new Date());
+    if (this.id != -1) {
+      this.taskService.retrieveTask(username, this.id).subscribe(data => {
+        this.task = data;
+      });
+    }
   }
 
   saveTask() {
     const username = sessionStorage.getItem("authenticatedUser");
-    this.taskService
-      .updateTask(username, this.id, this.task)
-      .subscribe(data => {
+    if (this.id === -1) {
+      this.taskService.createTask(username, this.task).subscribe(data => {
         this.router.navigate(["tasks"]);
       });
+    } else {
+      this.taskService
+        .updateTask(username, this.id, this.task)
+        .subscribe(data => {
+          this.router.navigate(["tasks"]);
+        });
+    }
   }
 }

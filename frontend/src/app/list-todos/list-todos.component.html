@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <p class="alert alert-{{messageType}}" *ngIf=" messages">{{messages}}</p>
+    <p class="alert alert-{{ messageType }}" *ngIf="messages">{{ messages }}</p>
     <h1>My tasks</h1>
     <table class="table">
       <thead>
@@ -14,14 +14,19 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <td>{{task.description}}</td>
-          <td>{{task.targetDate | date | uppercase}}</td>
-          <td>{{task.done}}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.targetDate | date | uppercase }}</td>
+          <td>{{ task.done }}</td>
           <td><i class="fas fa-edit" (click)="editAction(task.id)"></i></td>
           <td><i class="fas fa-trash" (click)="deleteAction(task.id)"></i></td>
         </tr>
       </tbody>
-
     </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr />
+    <button (click)="addTask()" class="btn btn-primary">New task</button>
   </div>
 </div>
