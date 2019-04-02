@@ -27,7 +27,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+<!--
+		By adding this dependecy here spring security provided us with a form authentication, which the standard user login is:
+		login: user
+		password: (is printed into screen at the application's start
 		
+		As soon as you log in with this form authentication a session cookie is set into the browser and as long you don't close
+		it you can continue making requests within this session.
+
+ -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
