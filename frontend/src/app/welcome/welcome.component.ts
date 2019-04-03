@@ -13,7 +13,6 @@ export class WelcomeComponent implements OnInit {
   username = "";
 
   ngOnInit() {
-
     this.username = this.route.snapshot.params['name'];
   }
 
