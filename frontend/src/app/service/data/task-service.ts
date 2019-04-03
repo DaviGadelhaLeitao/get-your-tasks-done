@@ -13,9 +13,15 @@ export class TaskService {
   ) {}
 
   retrieveAllTasks() {
+    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+
+    let headers = new HttpHeaders({
+      Authorization: basicAuthHeaderString
+    });
     const username = this.authService.getLoggedUser();
     return this.http.get<Task[]>(
-      `http://localhost:8080/users/${username}/tasks`
+      `http://localhost:8080/users/${username}/tasks`,
+      {headers}
     );
   }
 
@@ -33,9 +39,7 @@ export class TaskService {
   }
 
   createBasicAuthenticationHttpHeader() {
-    let username = 'davi';
-    let password = 'dummy';
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    
     return basicAuthHeaderString;
   }
   // first error before an addition of a header into the request:
