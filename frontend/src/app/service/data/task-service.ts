@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { HardcodedAuthenticationService } from "../hardcoded-authentication.service";
 import { Task } from "src/app/models/Task";
+import { HttpInterceptorBasicAuthService } from '../http/http-interceptor-basic-auth.service';
 
 @Injectable({
   providedIn: "root"
@@ -9,39 +10,23 @@ import { Task } from "src/app/models/Task";
 export class TaskService {
   constructor(
     private http: HttpClient,
-    private authService: HardcodedAuthenticationService
+    private authService: HardcodedAuthenticationService,
+    private httpInterceptor: HttpInterceptorBasicAuthService
   ) {}
 
   retrieveAllTasks() {
-    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
-
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
     const username = this.authService.getLoggedUser();
     return this.http.get<Task[]>(
-      `http://localhost:8080/users/${username}/tasks`,
-      {headers}
+      `http://localhost:8080/users/${username}/tasks`
     );
   }
 
   retrieveTask(username: string, id: number) {
-    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
-
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
-
     return this.http.get<Task>(
-      `http://localhost:8080/users/${username}/tasks/${id}`,
-      {headers} 
+      `http://localhost:8080/users/${username}/tasks/${id}`
     );
   }
 
-  createBasicAuthenticationHttpHeader() {
-    
-    return basicAuthHeaderString;
-  }
   // first error before an addition of a header into the request:
   // Access to XMLHttpRequest at 'http://localhost:8080/users/davi/tasks'
   // from origin 'http://localhost:4200' has been blocked by CORS policy:
