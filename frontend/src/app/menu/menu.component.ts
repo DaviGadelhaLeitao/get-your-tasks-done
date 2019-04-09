@@ -7,7 +7,6 @@ import { HardcodedAuthenticationService } from "../service/hardcoded-authenticat
   styleUrls: ["./menu.component.css"]
 })
 export class MenuComponent implements OnInit {
-  //testing
   constructor(
     private hardcodedAuthentication: HardcodedAuthenticationService
   ) {}
