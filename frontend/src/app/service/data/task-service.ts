@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HardcodedAuthenticationService } from "../hardcoded-authentication.service";
 import { Task } from "src/app/models/Task";
 import { HttpInterceptorBasicAuthService } from '../http/http-interceptor-basic-auth.service';
+import { API_URL } from '../../app.constants';
 
 @Injectable({
   providedIn: "root"
@@ -17,13 +18,13 @@ export class TaskService {
   retrieveAllTasks() {
     const username = this.authService.getLoggedUser();
     return this.http.get<Task[]>(
-      `http://localhost:8080/users/${username}/tasks`
+      `${API_URL}/users/${username}/tasks`
     );
   }
 
   retrieveTask(username: string, id: number) {
     return this.http.get<Task>(
-      `http://localhost:8080/users/${username}/tasks/${id}`
+      `${API_URL}/users/${username}/tasks/${id}`
     );
   }
 
@@ -34,14 +35,14 @@ export class TaskService {
 
   createTask(username: string, task: Task) {
     return this.http.post(
-      `http://localhost:8080/users/${username}/tasks/`,
+      `${API_URL}/users/${username}/tasks/`,
       task
     );
   }
 
   updateTask(username: string, id: number, task: Task) {
     return this.http.put(
-      `http://localhost:8080/users/${username}/tasks/${id}`,
+      `${API_URL}/users/${username}/tasks/${id}`,
       task
     );
   }
@@ -49,7 +50,7 @@ export class TaskService {
   deleteAction(id: number) {
     const username = this.authService.getLoggedUser();
     return this.http.delete(
-      `http://localhost:8080/users/${username}/tasks/${id}`
+      `${API_URL}/users/${username}/tasks/${id}`
     );
   }
 }
