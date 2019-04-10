@@ -1,4 +1,4 @@
-package com.davileitao.webservices.getyourtasksdone.basic.auth;
+package com.davileitao.basic.auth;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
